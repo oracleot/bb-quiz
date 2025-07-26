@@ -1,103 +1,144 @@
-import Image from "next/image";
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-50 to-pink-100">
+      <div className="container mx-auto px-4 py-8">
+        <div className="max-w-4xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-800 mb-4">
+              🌟 Kids Coding Quiz 🌟
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-600 mb-2">
+              Church Coding Training Program
+            </p>
+            <p className="text-lg text-gray-500">
+              Discover your potential for learning technology!
+            </p>
+          </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          {/* Main Welcome Card */}
+          <Card className="mb-8 border-2 border-blue-200 shadow-xl">
+            <CardHeader className="bg-gradient-to-r from-blue-50 to-purple-50">
+              <CardTitle className="text-2xl text-center text-blue-700">
+                Welcome, Future Coders! 👨‍💻👩‍💻
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-8">
+              <div className="space-y-6">
+                <div className="text-center">
+                  <p className="text-lg text-gray-700 leading-relaxed">
+                    Are you curious about technology? Do you love solving puzzles and learning new things? 
+                    This fun quiz will help us understand how ready you are to start your coding journey!
+                  </p>
+                </div>
+
+                <div className="grid md:grid-cols-3 gap-6">
+                  <div className="text-center p-4 bg-blue-50 rounded-lg">
+                    <div className="text-3xl mb-2">📖</div>
+                    <h3 className="font-semibold text-blue-700">Reading & Writing</h3>
+                    <p className="text-sm text-gray-600 mt-2">
+                      Questions about following instructions and understanding text
+                    </p>
+                  </div>
+                  
+                  <div className="text-center p-4 bg-purple-50 rounded-lg">
+                    <div className="text-3xl mb-2">💻</div>
+                    <h3 className="font-semibold text-purple-700">Computer Basics</h3>
+                    <p className="text-sm text-gray-600 mt-2">
+                      Questions about using computers and solving technology problems
+                    </p>
+                  </div>
+                  
+                  <div className="text-center p-4 bg-pink-50 rounded-lg">
+                    <div className="text-3xl mb-2">🤔</div>
+                    <h3 className="font-semibold text-pink-700">Curiosity & Learning</h3>
+                    <p className="text-sm text-gray-600 mt-2">
+                      Questions about your interest in technology and learning
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Quiz Details */}
+          <Card className="mb-8 border-2 border-green-200">
+            <CardHeader className="bg-green-50">
+              <CardTitle className="text-xl text-center text-green-700">
+                📋 Quiz Details
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-3">
+                    <span className="text-2xl">⏰</span>
+                    <div>
+                      <h4 className="font-semibold">15 Minutes</h4>
+                      <p className="text-sm text-gray-600">Take your time!</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center space-x-3">
+                    <span className="text-2xl">❓</span>
+                    <div>
+                      <h4 className="font-semibold">10 Questions</h4>
+                      <p className="text-sm text-gray-600">Multiple choice format</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-3">
+                    <span className="text-2xl">👶</span>
+                    <div>
+                      <h4 className="font-semibold">Ages 9-13</h4>
+                      <p className="text-sm text-gray-600">Perfect for your age group!</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center space-x-3">
+                    <span className="text-2xl">🎯</span>
+                    <div>
+                      <h4 className="font-semibold">No Wrong Answers</h4>
+                      <p className="text-sm text-gray-600">Just be yourself!</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Start Button */}
+          <div className="text-center">
+            <Link href="/info">
+              <Button 
+                size="lg" 
+                className="px-8 py-4 text-xl font-semibold bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-lg transform hover:scale-105 transition-all duration-200"
+              >
+                🚀 Start Your Adventure!
+              </Button>
+            </Link>
+            <p className="text-sm text-gray-500 mt-4">
+              Click the button above to begin your coding quiz journey!
+            </p>
+          </div>
+
+          {/* Encouragement */}
+          <div className="mt-12 text-center">
+            <div className="bg-yellow-50 border-2 border-yellow-200 rounded-lg p-6">
+              <p className="text-lg text-yellow-800 font-medium">
+                🌈 Remember: This quiz is all about discovering what makes you special! 
+                There are no wrong answers - just answer honestly and have fun! 🌈
+              </p>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
     </div>
   );
 }
