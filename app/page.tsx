@@ -78,7 +78,7 @@ export default function Home() {
                   <div className="flex items-center space-x-3">
                     <span className="text-2xl">⏰</span>
                     <div>
-                      <h4 className="font-semibold">15 Minutes</h4>
+                      <h4 className="font-semibold">10 Minutes</h4>
                       <p className="text-sm text-gray-600">Take your time!</p>
                     </div>
                   </div>

@@ -38,7 +38,7 @@ export function Timer({ onTimeUp }: TimerProps) {
   };
 
   const getProgressPercentage = (): number => {
-    const totalTime = 15 * 60; // 15 minutes
+    const totalTime = 10 * 60; // 10 minutes
     return ((totalTime - timeRemaining) / totalTime) * 100;
   };
 

@@ -3,7 +3,7 @@ import { persist } from 'zustand/middleware';
 import { QuizStore, UserInfo, QuizResult } from '@/types/quiz';
 import { quizQuestions } from '@/lib/quiz-data';
 
-const QUIZ_TIME_LIMIT = 15 * 60; // 15 minutes in seconds
+const QUIZ_TIME_LIMIT = 10 * 60; // 10 minutes in seconds
 
 export const useQuizStore = create<QuizStore>()(
   persist(

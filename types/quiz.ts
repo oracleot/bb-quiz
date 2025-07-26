@@ -37,7 +37,7 @@ export interface QuizState {
   currentQuestionIndex: number;
   answers: QuizAnswer[];
   startTime: Date | null;
-  timeRemaining: number; // in seconds (15 minutes = 900 seconds)
+  timeRemaining: number; // in seconds (10 minutes = 600 seconds)
   isCompleted: boolean;
   result: QuizResult | null;
 }
