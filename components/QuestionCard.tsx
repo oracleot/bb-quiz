@@ -76,7 +76,7 @@ export function QuestionCard({ question, questionNumber }: QuestionCardProps) {
                 key={key}
                 variant={currentAnswer === key ? 'default' : 'outline'}
                 className={`
-                  w-full text-left justify-start p-4 h-auto min-h-[60px] 
+                  w-full text-left justify-start p-4 h-auto min-h-[60px] whitespace-normal
                   ${currentAnswer === key 
                     ? 'bg-blue-500 hover:bg-blue-600 text-white border-blue-500' 
                     : 'hover:bg-blue-50 border-gray-300'
@@ -86,7 +86,7 @@ export function QuestionCard({ question, questionNumber }: QuestionCardProps) {
               >
                 <div className="flex items-start space-x-3 w-full">
                   <div className={`
-                    w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0
+                    w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5
                     ${currentAnswer === key 
                       ? 'bg-white text-blue-500' 
                       : 'bg-blue-100 text-blue-700'
@@ -94,9 +94,11 @@ export function QuestionCard({ question, questionNumber }: QuestionCardProps) {
                   `}>
                     {key.toUpperCase()}
                   </div>
-                  <p className="text-base leading-relaxed flex-1 text-left break-words">
-                    {value}
-                  </p>
+                  <div className="flex-1 text-left">
+                    <p className="text-base leading-relaxed break-words hyphens-auto">
+                      {value}
+                    </p>
+                  </div>
                 </div>
               </Button>
             ))}

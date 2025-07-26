@@ -136,7 +136,13 @@ export default function QuizPage() {
             </div>
           )}
 
-
+          {/* Question Card */}
+          <div className="mb-6">
+            <QuestionCard
+              question={currentQuestion}
+              questionNumber={currentQuestionIndex + 1}
+            />
+          </div>
 
           {/* Navigation */}
           <Card className="border-2 border-blue-200 shadow-lg bg-blue-50">
@@ -179,14 +185,6 @@ export default function QuizPage() {
               </div>
             </CardContent>
           </Card>
-
-          {/* Question Card */}
-          <div className="mb-6">
-            <QuestionCard
-              question={currentQuestion}
-              questionNumber={currentQuestionIndex + 1}
-            />
-          </div>
 
           {/* Progress Bar - below question */}
           <div className="mb-6">
