@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { TimerDisplay } from '@/components/TimerDisplay';
 
 export default function Home() {
   return (
@@ -78,7 +79,7 @@ export default function Home() {
                   <div className="flex items-center space-x-3">
                     <span className="text-2xl">⏰</span>
                     <div>
-                      <h4 className="font-semibold">10 Minutes</h4>
+                      <h4 className="font-semibold"><TimerDisplay /></h4>
                       <p className="text-sm text-gray-600">Take your time!</p>
                     </div>
                   </div>
@@ -136,6 +137,15 @@ export default function Home() {
                 There are no wrong answers - just answer honestly and have fun! 🌈
               </p>
             </div>
+          </div>
+
+          {/* Admin Link - Discrete */}
+          <div className="mt-8 text-center">
+            <Link href="/admin">
+              <Button variant="ghost" size="sm" className="text-xs text-gray-400 hover:text-gray-600">
+                Admin
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

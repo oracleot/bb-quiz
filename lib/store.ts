@@ -3,7 +3,21 @@ import { persist } from 'zustand/middleware';
 import { QuizStore, UserInfo, QuizResult } from '@/types/quiz';
 import { quizQuestions } from '@/lib/quiz-data';
 
-const QUIZ_TIME_LIMIT = 10 * 60; // 10 minutes in seconds
+const DEFAULT_QUIZ_TIME_LIMIT = 10 * 60; // 10 minutes in seconds (fallback)
+
+// Function to fetch timer configuration from API
+async function getTimerConfig(): Promise<number> {
+  try {
+    const response = await fetch('/api/timer-config');
+    if (response.ok) {
+      const config = await response.json();
+      return config.timerDurationMinutes * 60; // Convert minutes to seconds
+    }
+  } catch (error) {
+    console.error('Failed to fetch timer config:', error);
+  }
+  return DEFAULT_QUIZ_TIME_LIMIT; // Fallback to default
+}
 
 export const useQuizStore = create<QuizStore>()(
   persist(
@@ -16,7 +30,7 @@ export const useQuizStore = create<QuizStore>()(
         selectedAnswer: null,
       })),
       startTime: null,
-      timeRemaining: QUIZ_TIME_LIMIT,
+      timeRemaining: DEFAULT_QUIZ_TIME_LIMIT,
       isTimerStarted: false,
       isCompleted: false,
       result: null,
@@ -34,11 +48,12 @@ export const useQuizStore = create<QuizStore>()(
         });
       },
 
-      startTimer: () => {
+      startTimer: async () => {
+        const timerDuration = await getTimerConfig();
         const now = new Date();
         set({
           startTime: now,
-          timeRemaining: QUIZ_TIME_LIMIT,
+          timeRemaining: timerDuration,
           isTimerStarted: true,
         });
       },
@@ -115,7 +130,7 @@ export const useQuizStore = create<QuizStore>()(
             selectedAnswer: null,
           })),
           startTime: null,
-          timeRemaining: QUIZ_TIME_LIMIT,
+          timeRemaining: DEFAULT_QUIZ_TIME_LIMIT,
           isTimerStarted: false,
           isCompleted: false,
           result: null,

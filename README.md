@@ -5,6 +5,7 @@ A comprehensive coding aptitude assessment tool designed specifically for young 
 ## 🎯 Purpose
 
 This quiz helps identify young talent with coding aptitude by testing:
+
 - **Logical Thinking** - Pattern recognition and sequential reasoning
 - **Problem Solving** - Breaking down complex problems into manageable parts
 - **Basic Programming Concepts** - Variables, loops, conditions, and functions
@@ -14,13 +15,15 @@ This quiz helps identify young talent with coding aptitude by testing:
 ## ✨ Features
 
 - **📱 Mobile-Responsive Design** - Works seamlessly on all devices
-- **⏱️ Timed Assessment** - 30-minute quiz with real-time countdown
+- **⏱️ Timed Assessment** - Configurable timer with real-time countdown
 - **📊 Progress Tracking** - Visual progress bar and question navigation
 - **🔄 Question Navigation** - Move between questions freely during the quiz
 - **💾 Auto-Save Progress** - State persistence using Zustand with localStorage
 - **📈 Instant Results** - Immediate scoring and category breakdown
 - **📋 Google Sheets Integration** - Automatic submission of results for analysis
 - **🔒 Privacy-First** - Local storage cleanup after submission
+- **⚙️ Admin Panel** - Configure quiz settings (timer duration, etc.)
+- **🔐 Secure Timer** - Quiz locked until timer is started
 
 ## 🛠️ Technology Stack
 
@@ -130,7 +133,7 @@ bb-quiz/
    - Answer 25 questions across 5 categories
    - Use "Previous" and "Next" buttons to navigate
    - Monitor your progress with the progress bar
-   - Complete within the 30-minute time limit
+   - Complete within the configured time limit
 
 4. **View Results**
    - See your overall score and category breakdown
@@ -140,9 +143,11 @@ bb-quiz/
 ## 🧪 Testing
 
 ### Test Google Sheets Connection
+
 Visit `/api/test` to verify your Google Sheets integration is working correctly.
 
 ### Run Development Tests
+
 ```bash
 # Start development server
 pnpm dev
@@ -154,12 +159,14 @@ pnpm dev
 ## 🚀 Deployment
 
 ### Vercel (Recommended)
+
 1. Push your code to GitHub
 2. Connect your repository to [Vercel](https://vercel.com)
 3. Add environment variables in Vercel dashboard
 4. Deploy automatically
 
 ### Other Platforms
+
 - Ensure Node.js 18+ support
 - Set environment variables
 - Build command: `pnpm build`
@@ -180,6 +187,29 @@ pnpm dev
 3. **Basic Programming** (5 questions) - Variables, loops, and conditions
 4. **Mathematical Logic** (5 questions) - Number patterns and computation
 5. **Debugging** (5 questions) - Identifying and fixing code issues
+
+## ⚙️ Admin Panel
+
+The quiz includes an admin panel for managing quiz settings:
+
+### Features
+
+- **Timer Configuration**: Set quiz duration (1-60 minutes) with robust input handling (clearing the field is allowed, no leading zeros)
+- **Secure Authentication**: Password-protected access
+- **Real-time Updates**: Changes apply to new quiz sessions immediately
+- **Activity Logging**: Track configuration changes with timestamps
+
+### Access
+
+1. Navigate to `/admin` or click the "Admin" link on the homepage
+2. Enter the admin password (configured via `ADMIN_PASSWORD` environment variable)
+3. Adjust timer settings as needed
+
+### Security Notes
+
+- Admin password should be changed from the default in production
+- Authentication tokens are stored locally for session management
+- Configuration changes are logged for audit purposes
 
 ## 🤝 Contributing
 

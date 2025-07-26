@@ -11,11 +11,12 @@ interface QuestionCardProps {
 }
 
 export function QuestionCard({ question, questionNumber }: QuestionCardProps) {
-  const { answers, answerQuestion } = useQuizStore();
+  const { answers, answerQuestion, isTimerStarted } = useQuizStore();
   
   const currentAnswer = answers.find(a => a.questionId === question.id)?.selectedAnswer;
 
   const handleAnswerSelect = (option: 'a' | 'b' | 'c' | 'd') => {
+    if (!isTimerStarted) return; // Prevent answering if timer not started
     answerQuestion(question.id, option);
   };
 
@@ -81,8 +82,10 @@ export function QuestionCard({ question, questionNumber }: QuestionCardProps) {
                     ? 'bg-blue-500 hover:bg-blue-600 text-white border-blue-500' 
                     : 'hover:bg-blue-50 border-gray-300'
                   }
+                  ${!isTimerStarted ? 'opacity-50 cursor-not-allowed' : ''}
                 `}
                 onClick={() => handleAnswerSelect(key as 'a' | 'b' | 'c' | 'd')}
+                disabled={!isTimerStarted}
               >
                 <div className="flex items-start space-x-3 w-full">
                   <div className={`

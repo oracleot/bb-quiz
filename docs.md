@@ -100,7 +100,7 @@ Build a web-based quiz application to assess 9-13 year old children for a church
 - 10 multiple-choice questions testing reading/writing, computing basics, and curiosity
 - User information collection (name, age)
 - Automatic scoring and immediate results display
-- 15-minute time limit with visual timer
+- Configurable time limit with visual timer
 - Data persistence to Google Sheets
 - Mobile-responsive design
 - Simple, kid-friendly UI
@@ -151,7 +151,7 @@ Build a web-based quiz application to assess 9-13 year old children for a church
 - Clean, colorful, kid-friendly design
 - Large buttons and readable fonts
 - Progress bar showing completion
-- Countdown timer (15 minutes)
+- Countdown timer (configurable duration)
 - Auto-save progress
 - Confirmation before submission
 
@@ -185,7 +185,7 @@ FEATURES NEEDED:
 - Landing page with welcoming design
 - User info form (name, age validation)
 - Quiz with 10 multiple-choice questions
-- 15-minute timer with visual countdown
+- Configurable timer with visual countdown
 - Progress indicator
 - Auto-scoring and immediate results
 - Google Sheets data storage

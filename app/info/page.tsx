@@ -33,7 +33,7 @@ export default function UserInfoPage() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
-      age: 10,
+      age: '' as any, // Empty initially to avoid showing default number
     },
   });
 
@@ -118,7 +118,18 @@ export default function UserInfoPage() {
                             placeholder="Enter your age"
                             className="text-lg p-4 border-2 border-gray-300 focus:border-blue-500"
                             {...field}
-                            onChange={(e) => field.onChange(parseInt(e.target.value) || 0)}
+                            value={field.value === 0 ? '' : field.value || ''}
+                            onChange={(e) => {
+                              const value = e.target.value;
+                              if (value === '') {
+                                field.onChange('');
+                                return;
+                              }
+                              const numValue = parseInt(value);
+                              if (!isNaN(numValue)) {
+                                field.onChange(numValue);
+                              }
+                            }}
                           />
                         </FormControl>
                         <FormMessage />

@@ -126,7 +126,7 @@ export default function ResultsPage() {
               🎉 Great Job, {userInfo.name}! 🎉
             </h1>
             <p className="text-lg text-gray-600">
-              You&apos;ve completed the Beliver Bytes Assessment!
+              You&apos;ve completed the Believer Bytes Assessment!
             </p>
           </div>
 

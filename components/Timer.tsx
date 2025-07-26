@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuizStore } from '@/lib/store';
 
 interface TimerProps {
@@ -9,6 +9,23 @@ interface TimerProps {
 
 export function Timer({ onTimeUp }: TimerProps) {
   const { timeRemaining, isTimerStarted, updateTimeRemaining } = useQuizStore();
+  const [totalTime, setTotalTime] = useState(10 * 60); // Default 10 minutes
+
+  // Fetch the timer configuration on component mount
+  useEffect(() => {
+    async function fetchTimerConfig() {
+      try {
+        const response = await fetch('/api/timer-config');
+        if (response.ok) {
+          const config = await response.json();
+          setTotalTime(config.timerDurationMinutes * 60);
+        }
+      } catch (error) {
+        console.error('Failed to fetch timer config:', error);
+      }
+    }
+    fetchTimerConfig();
+  }, []);
 
   useEffect(() => {
     if (!isTimerStarted) {
@@ -42,7 +59,6 @@ export function Timer({ onTimeUp }: TimerProps) {
   };
 
   const getProgressPercentage = (): number => {
-    const totalTime = 10 * 60; // 10 minutes
     return ((totalTime - timeRemaining) / totalTime) * 100;
   };
 

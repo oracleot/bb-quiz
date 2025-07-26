@@ -30,9 +30,24 @@ export default function QuizPage() {
   const startTime = useQuizStore((state) => state.startTime);
 
   const [mounted, setMounted] = useState(false);
+  const [timerDurationMinutes, setTimerDurationMinutes] = useState(10);
 
   useEffect(() => {
     setMounted(true);
+    
+    // Fetch timer duration
+    async function fetchTimerConfig() {
+      try {
+        const response = await fetch('/api/timer-config');
+        if (response.ok) {
+          const config = await response.json();
+          setTimerDurationMinutes(config.timerDurationMinutes);
+        }
+      } catch (error) {
+        console.error('Failed to fetch timer config:', error);
+      }
+    }
+    fetchTimerConfig();
   }, []);
 
   useEffect(() => {
@@ -116,7 +131,7 @@ export default function QuizPage() {
                     🚀 Ready to Begin?
                   </h2>
                   <p className="text-green-700 mb-4">
-                    Answer each question to the best of your ability. When you&apos;re ready, click the button below to start your 10-minute timer!
+                    Answer each question to the best of your ability. When you&apos;re ready, click the button below to start your {timerDurationMinutes}-minute timer!
                   </p>
                   <Button
                     onClick={startTimer}
@@ -138,10 +153,30 @@ export default function QuizPage() {
 
           {/* Question Card */}
           <div className="mb-6">
-            <QuestionCard
-              question={currentQuestion}
-              questionNumber={currentQuestionIndex + 1}
-            />
+            {isTimerStarted ? (
+              <QuestionCard
+                question={currentQuestion}
+                questionNumber={currentQuestionIndex + 1}
+              />
+            ) : (
+              <Card className="border-2 border-gray-200 bg-gray-50">
+                <CardContent className="p-8 text-center">
+                  <div className="opacity-50">
+                    <h3 className="text-lg font-semibold text-gray-600 mb-4">
+                      🔒 Quiz Questions are Locked
+                    </h3>
+                    <p className="text-gray-500 mb-4">
+                      Please start the timer above to begin answering questions.
+                    </p>
+                    <div className="bg-white rounded-lg p-4 border border-gray-200">
+                      <p className="text-sm text-gray-400">
+                        Questions will appear here once you start the timer.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
           </div>
 
           {/* Navigation */}
@@ -152,7 +187,7 @@ export default function QuizPage() {
                 <Button
                   variant="outline"
                   onClick={handlePrevious}
-                  disabled={!canGoBack}
+                  disabled={!canGoBack || !isTimerStarted}
                   className="w-full sm:w-auto px-6 py-3 text-lg border-2 border-blue-300 hover:border-blue-400 hover:bg-blue-100 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   ← Previous Question
@@ -163,17 +198,21 @@ export default function QuizPage() {
                   <p className="text-lg font-semibold text-gray-700">
                     Question {currentQuestionIndex + 1} of {quizQuestions.length}
                   </p>
-                  {(currentAnswer === null || currentAnswer === undefined) && (
+                  {!isTimerStarted ? (
+                    <p className="text-sm text-red-600 mt-1">
+                      ⏰ Start the timer to begin answering questions
+                    </p>
+                  ) : (currentAnswer === null || currentAnswer === undefined) ? (
                     <p className="text-sm text-orange-600 mt-1">
                       Please select an answer to continue
                     </p>
-                  )}
+                  ) : null}
                 </div>
 
                 {/* Next/Submit Button */}
                 <Button
                   onClick={handleNext}
-                  disabled={currentAnswer === null || currentAnswer === undefined}
+                  disabled={currentAnswer === null || currentAnswer === undefined || !isTimerStarted}
                   className="w-full sm:w-auto px-6 py-3 text-lg font-semibold bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 shadow-lg transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:transform-none"
                 >
                   {canSubmit ? (
