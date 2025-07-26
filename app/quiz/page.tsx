@@ -17,11 +17,14 @@ export default function QuizPage() {
     currentQuestionIndex,
     answers,
     timeRemaining, // eslint-disable-line @typescript-eslint/no-unused-vars
+    isTimerStarted,
     isCompleted,
     startQuiz,
+    startTimer,
     nextQuestion,
     previousQuestion,
     submitQuiz,
+    resetQuiz,
   } = useQuizStore();
 
   const startTime = useQuizStore((state) => state.startTime);
@@ -39,7 +42,7 @@ export default function QuizPage() {
       return;
     }
 
-    // Start quiz if not already started
+    // Initialize quiz if not already started (but don't start timer)
     if (mounted && userInfo && !startTime && !isCompleted) {
       startQuiz();
     }
@@ -96,17 +99,42 @@ export default function QuizPage() {
           {/* Header */}
           <div className="text-center mb-6">
             <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
-              👋 Hi {userInfo.name}! Let&apos;s Code! 🚀
+              {!isTimerStarted ? (
+                <span>👋 Hi {userInfo.name}!</span>
+              ) : (
+                <span className='text-xl'>{userInfo.name}, remember to read each question carefully before answering!</span>
+              )}
             </h1>
-            <p className="text-base md:text-lg text-gray-600">
-              Answer each question to the best of your ability
-            </p>
           </div>
 
+          {/* Start Timer Section */}
+          {!isTimerStarted && (
+            <div className="mb-6">
+              <Card className="border-2 border-green-200 bg-green-50">
+                <CardContent className="p-6 text-center">
+                  <h2 className="text-lg font-semibold text-green-800 mb-3">
+                    🚀 Ready to Begin?
+                  </h2>
+                  <p className="text-green-700 mb-4">
+                    Answer each question to the best of your ability. When you&apos;re ready, click the button below to start your 10-minute timer!
+                  </p>
+                  <Button
+                    onClick={startTimer}
+                    className="bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 text-white font-semibold py-3 px-6 text-lg shadow-lg transform hover:scale-105 transition-all duration-200"
+                  >
+                    ⏰ Start Timer & Begin Quiz!
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
           {/* Timer */}
-          <div className="mb-6">
-            <Timer />
-          </div>
+          {isTimerStarted && (
+            <div className="mb-6">
+              <Timer />
+            </div>
+          )}
 
 
 
@@ -179,6 +207,7 @@ export default function QuizPage() {
                     <h4 className="font-semibold mb-2">Quiz Tips:</h4>
                     <ul className="space-y-1">
                       <li>• Read each question carefully</li>
+                      <li>• Start the timer when you&apos;re ready</li>
                       <li>• Take your time to think</li>
                       <li>• Choose the best answer</li>
                     </ul>
@@ -200,7 +229,10 @@ export default function QuizPage() {
           <div className="text-center mt-6">
             <Button 
               variant="ghost" 
-              onClick={() => router.push('/')}
+              onClick={() => {
+                resetQuiz();
+                router.push('/');
+              }}
               className="text-gray-500 hover:text-gray-700"
             >
               🏠 Exit Quiz (Go Home)

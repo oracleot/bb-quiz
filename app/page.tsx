@@ -10,10 +10,10 @@ export default function Home() {
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-800 mb-4">
-              🌟 Kids Coding Quiz 🌟
+              🌟 Admission Quiz! 🌟
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 mb-2">
-              Church Coding Training Program
+              RCCG Morningstar Kirknewton - Believer Bytes Training Program
             </p>
             <p className="text-lg text-gray-500">
               Discover your potential for learning technology!
@@ -24,7 +24,7 @@ export default function Home() {
           <Card className="mb-8 border-2 border-blue-200 shadow-xl">
             <CardHeader className="bg-gradient-to-r from-blue-50 to-purple-50">
               <CardTitle className="text-2xl text-center text-blue-700">
-                Welcome, Future Coders! 👨‍💻👩‍💻
+                Welcome, Star! 👨‍💻👩‍💻
               </CardTitle>
             </CardHeader>
             <CardContent className="p-8">

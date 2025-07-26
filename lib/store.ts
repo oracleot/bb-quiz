@@ -17,6 +17,7 @@ export const useQuizStore = create<QuizStore>()(
       })),
       startTime: null,
       timeRemaining: QUIZ_TIME_LIMIT,
+      isTimerStarted: false,
       isCompleted: false,
       result: null,
 
@@ -26,13 +27,19 @@ export const useQuizStore = create<QuizStore>()(
       },
 
       startQuiz: () => {
+        set({
+          currentQuestionIndex: 0,
+          isCompleted: false,
+          result: null,
+        });
+      },
+
+      startTimer: () => {
         const now = new Date();
         set({
           startTime: now,
           timeRemaining: QUIZ_TIME_LIMIT,
-          currentQuestionIndex: 0,
-          isCompleted: false,
-          result: null,
+          isTimerStarted: true,
         });
       },
 
@@ -109,6 +116,7 @@ export const useQuizStore = create<QuizStore>()(
           })),
           startTime: null,
           timeRemaining: QUIZ_TIME_LIMIT,
+          isTimerStarted: false,
           isCompleted: false,
           result: null,
         });

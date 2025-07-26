@@ -8,9 +8,13 @@ interface TimerProps {
 }
 
 export function Timer({ onTimeUp }: TimerProps) {
-  const { timeRemaining, updateTimeRemaining } = useQuizStore();
+  const { timeRemaining, isTimerStarted, updateTimeRemaining } = useQuizStore();
 
   useEffect(() => {
+    if (!isTimerStarted) {
+      return; // Don't start countdown until timer is manually started
+    }
+
     if (timeRemaining <= 0) {
       onTimeUp?.();
       return;
@@ -21,7 +25,7 @@ export function Timer({ onTimeUp }: TimerProps) {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [timeRemaining, updateTimeRemaining, onTimeUp]);
+  }, [timeRemaining, isTimerStarted, updateTimeRemaining, onTimeUp]);
 
   const formatTime = (seconds: number): string => {
     const minutes = Math.floor(seconds / 60);

@@ -38,6 +38,7 @@ export interface QuizState {
   answers: QuizAnswer[];
   startTime: Date | null;
   timeRemaining: number; // in seconds (10 minutes = 600 seconds)
+  isTimerStarted: boolean; // whether the timer has been manually started
   isCompleted: boolean;
   result: QuizResult | null;
 }
@@ -46,6 +47,7 @@ export interface QuizStore extends QuizState {
   // Actions
   setUserInfo: (userInfo: UserInfo) => void;
   startQuiz: () => void;
+  startTimer: () => void; // new action to start the timer manually
   answerQuestion: (questionId: number, answer: 'a' | 'b' | 'c' | 'd') => void;
   nextQuestion: () => void;
   previousQuestion: () => void;
