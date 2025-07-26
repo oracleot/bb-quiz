@@ -126,7 +126,7 @@ export default function ResultsPage() {
               🎉 Great Job, {userInfo.name}! 🎉
             </h1>
             <p className="text-lg text-gray-600">
-              You&apos;ve completed the Church Kids Coding Aptitude Quiz!
+              You&apos;ve completed the Beliver Bytes Assessment!
             </p>
           </div>
 
@@ -146,7 +146,7 @@ export default function ResultsPage() {
             <Card className="border-2 border-green-200 bg-green-50 mb-6">
               <CardContent className="p-4">
                 <p className="text-green-800 text-center">
-                  ✅ Your results have been saved successfully! Your progress has been cleared and you can take the quiz again anytime.
+                  ✅ Your results have been saved successfully!
                 </p>
               </CardContent>
             </Card>
@@ -173,9 +173,6 @@ export default function ResultsPage() {
               <div className="mb-6">
                 <div className={`text-6xl md:text-8xl font-bold mb-2 ${getScoreColor(percentageScore)}`}>
                   {result.score}/{result.totalQuestions}
-                </div>
-                <div className={`text-3xl md:text-4xl font-semibold ${getScoreColor(percentageScore)}`}>
-                  {percentageScore}%
                 </div>
               </div>
               
@@ -232,14 +229,14 @@ export default function ResultsPage() {
                   <div className="text-3xl mb-2">📚</div>
                   <h3 className="font-semibold text-gray-800 mb-2">Keep Learning</h3>
                   <p className="text-sm text-gray-600">
-                    Ask your parents about coding classes and online resources to continue your coding journey!
+                    Watch out for the resources we&apos;ll send to you before the program starts, and keep learning!
                   </p>
                 </div>
                 <div className="text-center p-4 bg-white rounded-lg border-2 border-gray-200">
                   <div className="text-3xl mb-2">👨‍👩‍👧‍👦</div>
-                  <h3 className="font-semibold text-gray-800 mb-2">Join Our Program</h3>
+                  <h3 className="font-semibold text-gray-800 mb-2">Join The Program</h3>
                   <p className="text-sm text-gray-600">
-                    Talk to your church leaders about joining our kids coding program to learn with friends!
+                    We will keep you updated with all the information you need to join the program!
                   </p>
                 </div>
               </div>
@@ -269,7 +266,7 @@ export default function ResultsPage() {
           <div className="mt-8 text-center">
             <div className="bg-green-50 border-2 border-green-200 rounded-lg p-6">
               <p className="text-lg text-green-800 font-medium">
-                🌟 Remember, every coder started as a beginner. 
+                🌟 Remember, everyone started as a beginner. 
                 Keep practicing, stay curious, and never stop learning! 🌟
               </p>
             </div>
