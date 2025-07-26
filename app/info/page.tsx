@@ -29,11 +29,11 @@ export default function UserInfoPage() {
   const { setUserInfo } = useQuizStore();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<{ name: string; age: number }>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
-      age: '' as any, // Empty initially to avoid showing default number
+      age: 9,
     },
   });
 
@@ -105,7 +105,7 @@ export default function UserInfoPage() {
                   <FormField
                     control={form.control}
                     name="age"
-                    render={({ field }) => (
+                    render={() => (
                       <FormItem>
                         <FormLabel className="text-lg font-semibold text-gray-700">
                           How old are you? 🎂
@@ -117,17 +117,16 @@ export default function UserInfoPage() {
                             max="13"
                             placeholder="Enter your age"
                             className="text-lg p-4 border-2 border-gray-300 focus:border-blue-500"
-                            {...field}
-                            value={field.value === 0 ? '' : field.value || ''}
+                            value={form.watch('age') === 0 ? '' : form.watch('age')}
                             onChange={(e) => {
                               const value = e.target.value;
                               if (value === '') {
-                                field.onChange('');
+                                form.setValue('age', 0);
                                 return;
                               }
                               const numValue = parseInt(value);
                               if (!isNaN(numValue)) {
-                                field.onChange(numValue);
+                                form.setValue('age', numValue);
                               }
                             }}
                           />
